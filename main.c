@@ -6,7 +6,7 @@
  * 
  * @section project_structure 工程结构
  * - common/     : 公共类型定义和工具函数
- * - modules/    : 10个学习模块
+ * - modules/    : 11个学习模块
  * - include/    : 头文件目录
  * - src/        : 源文件目录
  * 
@@ -21,6 +21,7 @@
  * 8. 文件I/O操作模块  - 文件读写、二进制操作
  * 9. 位运算与嵌入式   - 位操作、寄存器访问、中断处理
  * 10. 错误处理与调试  - 错误处理、断言、调试技术
+ * 11. 数据结构模块    - 静态数组、栈、队列、链表
  * 
  * @section usage 使用方法
  * 交互模式:直接运行程序,通过菜单选择
@@ -49,6 +50,7 @@
 #include "file_io.h"
 #include "bit_operation.h"
 #include "error_debug.h"
+#include "data_structure.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -100,6 +102,7 @@ static void print_module_list(void)
     printf("  [08] 文件I/O操作模块  - 文件读写、二进制操作\n");
     printf("  [09] 位运算与嵌入式   - 位操作、寄存器访问、中断处理\n");
     printf("  [10] 错误处理与调试   - 错误处理、断言、调试技术\n");
+    printf("  [11] 数据结构模块     - 静态数组、栈、队列、链表\n");
     printf("  ─────────────────────────────────────────────────────────────────────────────\n");
 }
 
@@ -148,12 +151,12 @@ static int32_t get_user_choice(int32_t min_val, int32_t max_val)
 
 /**
  * @brief 获取用户选择的模块编号
- * @return 模块编号(1-10),0表示返回
+ * @return 模块编号(1-11),0表示返回
  */
 static int32_t get_module_choice(void)
 {
-    printf("\n  选择模块 [1-10, 0=返回]: ");
-    int32_t choice = get_user_choice(0, 10);
+    printf("\n  选择模块 [1-11, 0=返回]: ");
+    int32_t choice = get_user_choice(0, 11);
     return choice;
 }
 
@@ -268,6 +271,13 @@ static void run_module_demo(int32_t module_id)
             demo_debug_techniques();
             demo_error_handling_patterns();
             break;
+        case 11:
+            demo_static_array();
+            demo_stack();
+            demo_queue();
+            demo_linked_list();
+            demo_data_structure_application();
+            break;
         default:
             printf("  无效的模块ID: %d\n", module_id);
             break;
@@ -276,13 +286,13 @@ static void run_module_demo(int32_t module_id)
 
 /**
  * @brief 运行所有模块的演示
- * @details 依次运行1-10号模块的所有演示函数
+ * @details 依次运行1-11号模块的所有演示函数
  */
 static void run_all_demos(void)
 {
     print_separator("运行所有模块演示");
     
-    for (int32_t i = 1; i <= 10; i++) {
+    for (int32_t i = 1; i <= 11; i++) {
         printf("\n");
         run_module_demo(i);
     }
@@ -356,7 +366,7 @@ int32_t main(int32_t argc, char *argv[])
         if (strcmp(argv[1], "--demo") == 0 || strcmp(argv[1], "-d") == 0) {
             if (argc > 2) {
                 int32_t module_id = atoi(argv[2]);
-                if (module_id >= 1 && module_id <= 10) {
+                if (module_id >= 1 && module_id <= 11) {
                     run_module_demo(module_id);
                     return 0;
                 }
@@ -368,11 +378,12 @@ int32_t main(int32_t argc, char *argv[])
         if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0) {
             printf("\n  用法: %s [选项] [模块号]\n", argv[0]);
             printf("\n  选项:\n");
-            printf("    -d, --demo [N]  运行演示 (N=1-10, 省略则运行全部)\n");
+            printf("    -d, --demo [N]  运行演示 (N=1-11, 省略则运行全部)\n");
             printf("    -h, --help      显示帮助信息\n");
             printf("\n  模块号:\n");
             printf("    1-基础语法  2-控制流  3-函数作用域  4-数组字符串  5-指针内存\n");
             printf("    6-结构联合  7-预处理  8-文件I/O     9-位运算     10-错误调试\n");
+            printf("    11-数据结构\n");
             return 0;
         }
     }

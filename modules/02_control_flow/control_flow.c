@@ -26,6 +26,7 @@
 #include "control_flow.h"
 #include "common/common_utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /*============================================================================*/
 /*                           条件语句演示函数                                   */

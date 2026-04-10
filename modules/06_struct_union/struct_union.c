@@ -29,6 +29,7 @@
 #include "struct_union.h"
 #include "common/common_utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 /*============================================================================*/

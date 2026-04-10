@@ -219,7 +219,13 @@ void demo_conditional_compile(void)
     printf("  平台: Windows\n");
 
     printf("\n[编译器条件编译]\n");
+#ifdef _MSC_VER
     printf("  编译器: MSVC %d\n", _MSC_VER);
+#elif defined(__GNUC__)
+    printf("  编译器: GCC %d.%d.%d\n", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__);
+#else
+    printf("  编译器: 未知\n");
+#endif
 
     printf("\n[嵌入式应用]\n");
     printf("  #ifdef USE_HAL_DRIVER\n");
@@ -284,14 +290,14 @@ void demo_predefined_macros(void)
 
     printf("\n[调试宏示例]\n");
     printf("  #define LOG_ERROR(msg) \\\n");
-    printf("      printf(\"[ERROR] %s:%d %s: %s\\n\", \\\n");
+    printf("      printf(\"[ERROR] %%s:%%d %%s: %%s\\n\", \\\n");
     printf("             __FILE__, __LINE__, __func__, msg)\n");
 
     printf("\n[断言宏]\n");
     printf("  #define ASSERT(cond) \\\n");
     printf("      do { \\\n");
     printf("          if (!(cond)) { \\\n");
-    printf("              printf(\"Assertion failed: %s, %s:%d\\n\", \\\n");
+    printf("              printf(\"Assertion failed: %%s, %%s:%%d\\n\", \\\n");
     printf("                     #cond, __FILE__, __LINE__); \\\n");
     printf("          } \\\n");
     printf("      } while(0)\n");

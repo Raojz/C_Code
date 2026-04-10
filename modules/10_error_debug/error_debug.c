@@ -26,6 +26,7 @@
 #include "error_debug.h"
 #include "common/common_utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 

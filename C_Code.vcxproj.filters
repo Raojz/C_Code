@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{A1B2C3D4-0001-0001-0001-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\common">
+      <UniqueIdentifier>{A1B2C3D4-0001-0001-0001-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules">
+      <UniqueIdentifier>{A1B2C3D4-0001-0001-0001-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules">
+      <UniqueIdentifier>{A1B2C3D4-0001-0001-0001-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\01_basic_syntax">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\02_control_flow">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\03_function_scope">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\04_array_string">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\05_pointer_memory">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\06_struct_union">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\07_preprocessor">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\08_file_io">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\09_bit_operation">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\10_error_debug">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\01_basic_syntax">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\02_control_flow">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\03_function_scope">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\04_array_string">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\05_pointer_memory">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\06_struct_union">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\07_preprocessor">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\08_file_io">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\09_bit_operation">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\10_error_debug">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000010}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common\common_utils.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\01_basic_syntax\basic_syntax.c">
+      <Filter>源文件\modules\01_basic_syntax</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\02_control_flow\control_flow.c">
+      <Filter>源文件\modules\02_control_flow</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\03_function_scope\function_scope.c">
+      <Filter>源文件\modules\03_function_scope</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\04_array_string\array_string.c">
+      <Filter>源文件\modules\04_array_string</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\05_pointer_memory\pointer_memory.c">
+      <Filter>源文件\modules\05_pointer_memory</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\06_struct_union\struct_union.c">
+      <Filter>源文件\modules\06_struct_union</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\07_preprocessor\preprocessor.c">
+      <Filter>源文件\modules\07_preprocessor</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\08_file_io\file_io.c">
+      <Filter>源文件\modules\08_file_io</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\09_bit_operation\bit_operation.c">
+      <Filter>源文件\modules\09_bit_operation</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\10_error_debug\error_debug.c">
+      <Filter>源文件\modules\10_error_debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\common_types.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\common_utils.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\01_basic_syntax\basic_syntax.h">
+      <Filter>头文件\modules\01_basic_syntax</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\02_control_flow\control_flow.h">
+      <Filter>头文件\modules\02_control_flow</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\03_function_scope\function_scope.h">
+      <Filter>头文件\modules\03_function_scope</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\04_array_string\array_string.h">
+      <Filter>头文件\modules\04_array_string</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\05_pointer_memory\pointer_memory.h">
+      <Filter>头文件\modules\05_pointer_memory</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\06_struct_union\struct_union.h">
+      <Filter>头文件\modules\06_struct_union</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\07_preprocessor\preprocessor.h">
+      <Filter>头文件\modules\07_preprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\08_file_io\file_io.h">
+      <Filter>头文件\modules\08_file_io</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\09_bit_operation\bit_operation.h">
+      <Filter>头文件\modules\09_bit_operation</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\10_error_debug\error_debug.h">
+      <Filter>头文件\modules\10_error_debug</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

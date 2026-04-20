@@ -139,6 +139,8 @@ void demo_variable_scope(void)
  *          - extern：外部链接，跨文件访问
  * 
  * @note static局部变量只初始化一次，值在函数调用间保持
+ * static的作用主要为两种：1.修饰局部变量，延长生命周期到程序结束，只初始化一次保留上一次的值；
+ *                         2.修饰全局变量或函数，限制作用域，该变量及函数只能在本文件中使用，无法通过extern外部链接
  * @note register只是建议，编译器可能忽略
  */
 void demo_storage_classes(void)
@@ -166,8 +168,8 @@ void demo_storage_classes(void)
 /**
  * @brief 常量类型演示
  * @details 展示C语言中定义常量的三种方式：
- *          - const关键字：类型安全的只读变量
- *          - 宏定义：预处理器文本替换
+ *          - const关键字：类型安全的只读变量，可能占内存
+ *          - 宏定义：预处理器文本替换，不占内存
  *          - 枚举常量：整数常量集合
  * 
  * @note 推荐使用const替代宏定义常量（类型安全）
@@ -223,23 +225,23 @@ void demo_arithmetic_operators(void)
     int32_t a = 17;
     int32_t b = 5;
 
-    printf("  a = %d, b = %d\n", a, b);
-    printf("  加法 (+):  a + b = %d\n", a + b);
-    printf("  减法 (-):  a - b = %d\n", a - b);
-    printf("  乘法 (*):  a * b = %d\n", a * b);
-    printf("  除法 (/):  a / b = %d (整数除法截断)\n", a / b);
-    printf("  取模 (%%): a %% b = %d\n", a % b);
+    printf("  a = %d, b = %d\n", a, b);//17,5
+    printf("  加法 (+):  a + b = %d\n", a + b);//17+5
+    printf("  减法 (-):  a - b = %d\n", a - b);//17-5
+    printf("  乘法 (*):  a * b = %d\n", a * b);//17*5
+    printf("  除法 (/):  a / b = %d (整数除法截断)\n", a / b);//17/5=3
+    printf("  取模 (%%): a %% b = %d\n", a % b);//17%5=2
 
     printf("\n[自增/自减运算符]\n");
     int32_t c = 10;
     printf("  c = %d\n", c);
-    printf("  ++c (前缀): %d, c = %d\n", ++c, c);
+    printf("  ++c (前缀): %d, c = %d\n", ++c, c);//先自增再赋值，先加1，然后用这个新值去参与运算。11,11
     c = 10;
-    printf("  c++ (后缀): %d, c = %d\n", c++, c);
+    printf("  c++ (后缀): %d, c = %d\n", c++, c);//先用原值计算再加一。10,11
     c = 10;
-    printf("  --c (前缀): %d, c = %d\n", --c, c);
+    printf("  --c (前缀): %d, c = %d\n", --c, c);//先减一再用新值去参与计算。9,9
     c = 10;
-    printf("  c-- (后缀): %d, c = %d\n", c--, c);
+    printf("  c-- (后缀): %d, c = %d\n", c--, c);//先用原值再减一。10,9
 }
 
 /*============================================================================*/
@@ -322,6 +324,11 @@ void demo_logical_operators(void)
  * @note 位操作是嵌入式开发的核心技能
  * @note 左移相当于乘2，右移相当于除2
  * @note 无符号数右移是逻辑右移，有符号数右移取决于编译器
+ *
+ * 置一：reg |= (1<<bit) //将变量第bit位的数设置为1
+ * 清零：reg &= ~(1<<bit)//将变量第bit位的数设置为0
+ * 翻转：reg ^= (1<<bit) //将变量第bit位的数翻转，0置一，1置零
+ * 读值：if((reg >> bit) & 1) == 1)//判断第bit位的数值是否为1
  */
 void demo_bitwise_operators(void)
 {
@@ -509,25 +516,27 @@ void demo_type_conversion(void)
  * @note sizeof是编译时运算符，不是函数
  * @note 常用技巧：数组元素个数 = sizeof(arr) / sizeof(arr[0])
  * @note 结构体大小可能因对齐而大于成员大小之和
+ * 结构体对齐：1.成员地址大小必定是成员类型大小的整数倍；
+ *             2.结构体大小必是最大成员大小的整数倍。
  */
 void demo_sizeof_operator(void)
 {
     print_separator("sizeof运算符演示");
 
     printf("[基本类型大小]\n");
-    printf("  sizeof(char)      = %zu 字节\n", sizeof(char));
-    printf("  sizeof(short)     = %zu 字节\n", sizeof(short));
-    printf("  sizeof(int)       = %zu 字节\n", sizeof(int));
-    printf("  sizeof(long)      = %zu 字节\n", sizeof(long));
-    printf("  sizeof(float)     = %zu 字节\n", sizeof(float));
-    printf("  sizeof(double)    = %zu 字节\n", sizeof(double));
-    printf("  sizeof(void*)     = %zu 字节 (指针大小)\n", sizeof(void*));
+    printf("  sizeof(char)      = %zu 字节\n", sizeof(char));//1
+    printf("  sizeof(short)     = %zu 字节\n", sizeof(short));//2
+    printf("  sizeof(int)       = %zu 字节\n", sizeof(int));//4
+    printf("  sizeof(long)      = %zu 字节\n", sizeof(long));//long:4,long long:8
+    printf("  sizeof(float)     = %zu 字节\n", sizeof(float));//4
+    printf("  sizeof(double)    = %zu 字节\n", sizeof(double));//8
+    printf("  sizeof(void*)     = %zu 字节 (指针大小)\n", sizeof(void*));//32位:4,64位:8
 
     printf("\n[数组大小计算]\n");
     int32_t arr[] = {1, 2, 3, 4, 5};
-    size_t arr_bytes = sizeof(arr);
-    size_t elem_bytes = sizeof(arr[0]);
-    size_t elem_count = arr_bytes / elem_bytes;
+    size_t arr_bytes = sizeof(arr);//整个数组字节大小 4*5=20
+    size_t elem_bytes = sizeof(arr[0]);//首个元素的字节大小，int类型:4字节
+    size_t elem_count = arr_bytes / elem_bytes;//数组元素个数
     printf("  数组总大小: %zu 字节\n", arr_bytes);
     printf("  单元素大小: %zu 字节\n", elem_bytes);
     printf("  元素个数:   %zu = %zu / %zu\n", elem_count, arr_bytes, elem_bytes);
@@ -557,7 +566,7 @@ void demo_sizeof_operator(void)
  * @brief 运算符优先级演示
  * @details 展示C语言运算符的优先级和结合性：
  *          - 括号 () 最高
- *          - 单目运算符次之
+ *          - 单目运算符次之：++，--，~，-，*，&，+，！。
  *          - 算术 > 关系 > 逻辑 > 条件 > 赋值
  * 
  * @note 建议使用括号明确优先级，提高可读性

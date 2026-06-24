@@ -138,12 +138,6 @@ void demo_macro_basics(void)
     printf("          a = b; \\\n");
     printf("          b = temp; \\\n");
     printf("      } while(0)\n");
-
-    printf("\n[版本号宏]\n");
-    printf("  VERSION_MAJOR = %d\n", VERSION_MAJOR);
-    printf("  VERSION_MINOR = %d\n", VERSION_MINOR);
-    printf("  VERSION_PATCH = %d\n", VERSION_PATCH);
-    printf("  VERSION_STRING = %s\n", VERSION_STRING);
 }
 
 void demo_macro_advanced(void)

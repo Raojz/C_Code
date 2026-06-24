@@ -56,7 +56,6 @@
 #include "serial_i2c.h"
 #include "serial_spi.h"
 #include "performance.h"
-#include "test_framework.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -75,7 +74,6 @@ static void demo_spi_basics(void);
 static void demo_spi_transfer(void);
 static void demo_serial_comparison(void);
 static void demo_performance_analysis(void);
-static int32_t test_serial_communication(void);
 
 /*============================================================================*/
 /*                           菜单选项定义                                       */
@@ -102,7 +100,7 @@ static void print_banner(void)
 {
     printf("\n");
     printf("================================================================================\n");
-    printf("              嵌入式C语言系统化学习工程 v%s                              \n", VERSION_STRING);
+    printf("              嵌入式C语言系统化学习工程                              \n");
     printf("================================================================================\n");
 }
 
@@ -140,7 +138,6 @@ static void print_main_menu(void)
     printf("  主菜单:\n");
     printf("  ─────────────────────────────────────────────────────────────────────────────\n");
     printf("  [1] 运行模块演示\n");
-    printf("  [2] 运行模块测试\n");
     printf("  [0] 退出程序\n");
     printf("  ─────────────────────────────────────────────────────────────────────────────\n");
 }
@@ -337,80 +334,22 @@ static void run_all_demos(void)
  * @brief 运行指定模块的测试
  * @details 根据模块编号调用对应的测试函数
  * @param module_id 模块编号(1-11)
+ * @note 测试功能已移除
  */
 static void run_module_test(int32_t module_id)
 {
-    int32_t failed = 0;
-    
-    switch (module_id) {
-        case 1:
-            failed = test_basic_syntax();
-            break;
-        case 2:
-            failed = test_control_flow();
-            break;
-        case 3:
-            failed = test_function_scope();
-            break;
-        case 4:
-            failed = test_array_string();
-            break;
-        case 5:
-            failed = test_pointer_memory();
-            break;
-        case 6:
-            failed = test_struct_union();
-            break;
-        case 7:
-            failed = test_preprocessor();
-            break;
-        case 8:
-            failed = test_file_io();
-            break;
-        case 9:
-            failed = test_bit_operation();
-            break;
-        case 10:
-            failed = test_error_debug();
-            break;
-        case 11:
-            failed = test_data_structure();
-            break;
-        case 12:
-            failed = test_serial_communication();
-            break;
-        default:
-            printf("  无效的模块ID: %d\n", module_id);
-            return;
-    }
-    
-    printf("\n");
-    if (failed == 0) {
-        printf("  模块%d测试全部通过!\n", module_id);
-    } else {
-        printf("  模块%d测试完成, %d项失败!\n", module_id, failed);
-    }
+    printf("  模块%d: 测试功能已移除\n", module_id);
 }
 
 /**
  * @brief 运行所有模块的测试
  * @details 依次运行1-11号模块的所有测试函数
+ * @note 测试功能已移除
  */
 static void run_all_module_tests(void)
 {
-    int32_t total_failed = 0;
-    
     print_separator("运行所有模块测试");
-    
-    test_init();
-    
-    for (int32_t i = 1; i <= 12; i++) {
-        printf("\n");
-        run_module_test(i);
-    }
-    
-    printf("\n");
-    test_print_report();
+    printf("  测试功能已移除\n");
 }
 
 /*============================================================================*/
@@ -440,36 +379,6 @@ static void demo_mode(void)
         getchar();
         print_module_list();
     }
-}
-
-/**
- * @brief 测试模式交互界面
- * @details 显示模块列表,让用户选择要运行的测试
- */
-static void test_mode(void)
-{
-    print_module_list();
-    
-    test_init();
-    
-    while (1) {
-        int32_t module_id = get_module_choice();
-        
-        if (module_id == 0) {
-            break;
-        }
-        
-        printf("\n");
-        run_module_test(module_id);
-        
-        printf("\n");
-        printf("  按回车继续...");
-        getchar();
-        print_module_list();
-    }
-    
-    printf("\n");
-    test_print_report();
 }
 
 /*============================================================================*/
@@ -520,42 +429,26 @@ int32_t main(int32_t argc, char *argv[])
             return 0;
         }
         
-        if (strcmp(argv[1], "--test") == 0 || strcmp(argv[1], "-t") == 0) {
-            if (argc > 2) {
-                int32_t module_id = atoi(argv[2]);
-                if (module_id >= 1 && module_id <= 12) {
-                    run_module_test(module_id);
-                    return 0;
-                }
-            }
-            run_all_module_tests();
-            return 0;
-        }
-        
         if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0) {
             printf("\n  用法: %s [选项] [模块号]\n", argv[0]);
             printf("\n  选项:\n");
             printf("    -d, --demo [N]  运行演示 (N=1-12, 省略则运行全部)\n");
-            printf("    -t, --test [N]  运行测试 (N=1-12, 省略则运行全部)\n");
             printf("    -h, --help      显示帮助信息\n");
             printf("\n  模块号:\n");
             printf("    1-基础语法  2-控制流  3-函数作用域  4-数组字符串  5-指针内存\n");
             printf("    6-结构联合  7-预处理  8-文件I/O     9-位运算     10-错误调试\n");
-            printf("    11-数据结构  12-串口通信\n");
+            printf("    11-数据结构 12-串口通信\n");
             return 0;
         }
     }
     
     while (1) {
         print_main_menu();
-        int32_t choice = get_user_choice(0, 2);
+        int32_t choice = get_user_choice(0, 1);
         
         switch (choice) {
             case MENU_OPTION_DEMO:
                 demo_mode();
-                break;
-            case MENU_OPTION_TEST:
-                test_mode();
                 break;
             case MENU_OPTION_EXIT:
                 printf("\n  感谢使用嵌入式C语言学习工程!\n\n");
@@ -761,44 +654,6 @@ static void demo_serial_comparison(void)
     printf("• 需要简单调试：UART\n");
     printf("• 需要连接多个设备：I2C\n");
     printf("• 需要高速传输：SPI\n");
-}
-
-/**
- * @brief 串口通信模块测试
- */
-static int32_t test_serial_communication(void)
-{
-    int32_t failed = 0;
-
-    print_separator("串口通信模块测试");
-    printf("注意：此测试仅为演示，实际使用需要硬件支持\n\n");
-
-    // 测试UART配置验证
-    printf("测试1：UART基本配置测试\n");
-    printf("✓ 波特率验证：115200\n");
-    printf("✓ 数据位数：8位\n");
-    printf("✓ 停止位数：1位\n");
-    printf("✓ 校验方式：无校验\n\n");
-
-    // 测试I2C地址范围
-    printf("测试2：I2C地址范围验证\n");
-    printf("✓ 地址范围：0x08-0x77\n");
-    printf("✓ 保留地址：0x00-0x07, 0x78-0x7F\n");
-    printf("✓ 常见设备地址检查\n\n");
-
-    // 测试SPI模式
-    printf("测试3：SPI模式配置测试\n");
-    printf("✓ SPI Mode 0：CPOL=0, CPHA=0\n");
-    printf("✓ SPI Mode 3：CPOL=1, CPHA=1\n");
-    printf("✓ 时钟频率测试\n\n");
-
-    // 测试通信协议比较
-    printf("测试4：协议特性比较\n");
-    printf("✓ 线路数量：UART(2), I2C(2), SPI(4)\n");
-    printf("✓ 速度比较：SPI > I2C > UART\n");
-    printf("✓ 多设备支持：I2C(好), SPI(中等), UART(差)\n\n");
-
-    return failed;
 }
 
 /**

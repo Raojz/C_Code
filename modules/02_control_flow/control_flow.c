@@ -191,20 +191,6 @@ void demo_for_loop(void)
     }
     printf("sum = %d\n", sum);
 
-    printf("\n[倒序循环]\n");
-    printf("  倒计时: ");
-    for (int32_t i = 5; i >= 1; i--) {
-        printf("%d ", i);
-    }
-    printf("\n");
-
-    printf("\n[步长循环]\n");
-    printf("  偶数: ");
-    for (int32_t i = 0; i <= 10; i += 2) {
-        printf("%d ", i);
-    }
-    printf("\n");
-
     printf("\n[嵌套for循环 - 九九乘法表]\n");
     for (int32_t i = 1; i <= 9; i++) {
         printf("  ");
@@ -238,32 +224,15 @@ void demo_for_loop(void)
 void demo_while_loop(void)
 {
     print_separator("while循环演示");
-
-    printf("[基本while循环]\n");
-    int32_t count = 5;
-    printf("  倒计时: ");
-    while (count > 0) {
-        printf("%d ", count);
-        count--;
-    }
-    printf("\n");
-
-    printf("\n[条件循环 - 数字位数统计]\n");
-    int32_t num = 12345;
-    int32_t digits = 0;
-    int32_t temp = num;
-    while (temp != 0) {
-        temp /= 10;
-        digits++;
-    }
-    printf("  %d 有 %d 位数字\n", num, digits);
-
     printf("\n[读取直到条件满足]\n");
-    const char *str = "Hello World!";
+    const char *str = "Hello World!";//此时字符串在静态区不在栈上，指针str在栈上但不能更改字符串内容，内存中只有一份字符串
+    								//如果是const char str[]="Hello World!";此时会从静态区拷贝一份字符串放到栈上
+    								//可以修改栈上字符串内容，内存中将存在两份字符串。
     int32_t index = 0;
     printf("  字符串: \"%s\"\n", str);
     printf("  查找空格位置: ");
-    while (str[index] != '\0' && str[index] != ' ') {
+    while (str[index] != '\0' && str[index] != ' ')//C语言特性：str[index]等价于*(str + index)
+	{
         index++;
     }
     if (str[index] == ' ') {
@@ -296,7 +265,7 @@ void demo_do_while_loop(void)
     printf("  特点: 至少执行一次循环体\n");
     int32_t i = 0;
     do {
-        printf("  i = %d\n", i);
+        printf("  i = %d\n", i);//跟for循环语句不同，先跑循环体再跑判断语句
         i++;
     } while (i < 3);
 

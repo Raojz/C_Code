@@ -119,6 +119,72 @@
     <ClCompile Include="modules\10_error_debug\error_debug.c">
       <Filter>源文件\modules\10_error_debug</Filter>
     </ClCompile>
+    <ClCompile Include="common\serial_i2c.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common\serial_spi.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common\serial_uart.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common\stm32_hal_stub.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="common\test_framework.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\02_control_flow\test_control_flow.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\03_function_scope\test_function_scope.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\04_array_string\test_array_string.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\05_pointer_memory\test_pointer_memory.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\06_struct_union\test_struct_union.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\07_preprocessor\test_preprocessor.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\08_file_io\test_file_io.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\09_bit_operation\test_bit_operation.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\10_error_debug\test_error_debug.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\test_data_structure.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\test_perf_helpers.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\12_serial_communication\performance.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\static_array.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\stack.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\queue.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\linked_list.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\11_data_structure\data_structure.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\common_types.h">
@@ -156,6 +222,33 @@
     </ClInclude>
     <ClInclude Include="modules\10_error_debug\error_debug.h">
       <Filter>头文件\modules\10_error_debug</Filter>
+    </ClInclude>
+    <ClInclude Include="common\serial_i2c.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="common\serial_spi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="common\serial_uart.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\11_data_structure\static_array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\11_data_structure\stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\11_data_structure\queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\11_data_structure\linked_list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\11_data_structure\data_structure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\12_serial_communication\performance.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

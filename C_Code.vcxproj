@@ -136,11 +136,6 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="common\common_utils.c" />
-    <ClCompile Include="common\serial_i2c.c" />
-    <ClCompile Include="common\serial_spi.c" />
-    <ClCompile Include="common\serial_uart.c" />
-    <ClCompile Include="common\stm32_hal_stub.c" />
-    <ClCompile Include="modules\12_serial_communication\performance.c" />
     <ClCompile Include="modules\01_basic_syntax\basic_syntax.c" />
     <ClCompile Include="modules\02_control_flow\control_flow.c" />
     <ClCompile Include="modules\03_function_scope\function_scope.c" />
@@ -161,9 +156,6 @@
   <ItemGroup>
     <ClInclude Include="common\common_types.h" />
     <ClInclude Include="common\common_utils.h" />
-    <ClInclude Include="common\serial_i2c.h" />
-    <ClInclude Include="common\serial_spi.h" />
-    <ClInclude Include="common\serial_uart.h" />
     <ClInclude Include="modules\01_basic_syntax\basic_syntax.h" />
     <ClInclude Include="modules\02_control_flow\control_flow.h" />
     <ClInclude Include="modules\03_function_scope\function_scope.h" />
@@ -180,7 +172,6 @@
     <ClInclude Include="modules\11_data_structure\linked_list.h" />
     <ClInclude Include="modules\11_data_structure\doubly_linked_list.h" />
     <ClInclude Include="modules\11_data_structure\data_structure.h" />
-    <ClInclude Include="modules\12_serial_communication\performance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

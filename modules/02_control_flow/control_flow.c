@@ -97,7 +97,7 @@ void demo_if_statement(void)
  *          - fall-through用法
  *          - default分支
  * 
- * @note switch只能用于整数类型（char, int, enum）
+ * @note switch只能用于整数类型（char字符也行，本质是ASCII码值, int, enum）
  * @note 每个case后应加break，除非有意fall-through
  * @note switch非常适合实现状态机
  */
@@ -627,4 +627,18 @@ void demo_state_machine(void)
     printf("  2. 每个状态处理所有可能事件\n");
     printf("  3. 状态转换逻辑清晰\n");
     printf("  4. 考虑异常状态处理\n");
+}
+
+
+void control_flow_02()
+{
+    demo_if_statement();
+    demo_switch_statement();
+    demo_for_loop();
+    demo_while_loop();
+    demo_do_while_loop();
+    demo_break_continue();
+    demo_goto_statement();
+    demo_nested_control();
+    demo_state_machine();
 }

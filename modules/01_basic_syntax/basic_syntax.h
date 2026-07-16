@@ -155,4 +155,18 @@ void demo_operator_precedence(void);
 }
 #endif
 
+/* @brief 基础语法模块实现
+* @details 演示C语言基础语法：变量、数据类型、运算符等。
+* 本模块是C语言学习的基础，涵盖以下核心知识点：
+* -数据类型：整数、浮点、字符、布尔类型
+* -变量作用域：局部、全局、静态变量
+* -存储类：auto、static、register、extern
+* -常量类型：const、宏定义、枚举
+* -运算符：算术、关系、逻辑、位运算、赋值、条件
+* -类型转换：隐式转换、显式转换
+* -sizeof运算符：类型大小、数组大小计算
+* -运算符优先级：结合性与求值顺序
+*/
+void basic_syntax_01();
+
 #endif

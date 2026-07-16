@@ -6,7 +6,7 @@
  *
  * @section project_structure 工程结构
  * - common/     : 公共类型定义和工具函数
- * - modules/    : 12个学习模块
+ * - modules/    : 11个学习模块
  * - include/    : 头文件目录
  * - src/        : 源文件目录
  *
@@ -22,7 +22,7 @@
  * 9. 位运算与嵌入式   - 位操作、寄存器访问、中断处理
  * 10. 错误处理与调试  - 错误处理、断言、调试技术
  * 11. 数据结构模块    - 静态数组、栈、队列、链表
- * 12. 串口通信模块    - UART、I2C、SPI通信协议实现
+ *
  *
  * @section usage 使用方法
  * 交互模式:直接运行程序,通过菜单选择
@@ -57,6 +57,16 @@
 #include <string.h>
 
 #include <windows.h>
+
+/*          C语言从源代码到运行经历的过程                                                 
+源代码(.c) ──→ 预处理 ──→ 编译 ──→ 汇编 ──→ 链接 ──→ 可执行文件 ──→ 加载运行
+                        │           │         │         │                      │
+                        ▼           ▼         ▼         ▼                      ▼
+                        预处理文件    汇编文件   目标文件  可执行文件           进程在内存中执行
+                        (.i / .h)      (.s)      (.o)      (.exe / .elf)          (OS管理)
+ */
+
+
 
 /*============================================================================*/
 /*                           菜单选项定义                                       */
@@ -177,50 +187,16 @@ static void run_module_demo(int32_t module_id)
 {
     switch (module_id) {
         case 1:
-            demo_data_types();
-            demo_variable_scope();
-            demo_storage_classes();
-            demo_constant_types();
-            demo_arithmetic_operators();
-            demo_relational_operators();
-            demo_logical_operators();
-            demo_bitwise_operators();
-            demo_assignment_operators();
-            demo_conditional_operator();
-            demo_type_conversion();
-            demo_sizeof_operator();
-            demo_operator_precedence();
+            basic_syntax_01();//模块1:基本语法
             break;
         case 2:
-            demo_if_statement();
-            demo_switch_statement();
-            demo_for_loop();
-            demo_while_loop();
-            demo_do_while_loop();
-            demo_break_continue();
-            demo_goto_statement();
-            demo_nested_control();
-            demo_state_machine();
+            control_flow_02();//模块2:控制流
             break;
         case 3:
-            demo_function_basics();
-            demo_parameter_passing();
-            demo_multiple_return_values();
-            demo_scope_rules();
-            demo_storage_class();
-            demo_recursion();
-            demo_function_pointer();
-            demo_variadic_function();
+            function_scope_03();//模块3:函数与作用域
             break;
         case 4:
-            demo_one_dimensional_array();
-            demo_multi_dimensional_array();
-            demo_character_array_string();
-            demo_string_operations();
-            demo_string_techniques();
-            demo_array_sorting();
-            demo_array_searching();
-            demo_array_common_errors();
+            array_string_04();//模块4:数组和字符串
             break;
         case 5:
             demo_pointer_basics();

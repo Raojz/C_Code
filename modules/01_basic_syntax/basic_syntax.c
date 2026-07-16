@@ -35,10 +35,28 @@
 /*                           全局变量定义                                       */
 /*============================================================================*/
 
-/** @brief 静态全局变量（仅本文件可见） */
+/** @brief 静态全局变量（仅本文件可见） 
+| 特性 | 说明 |
+| :--- | : --- |
+| 作用域(Scope) | 仅在定义它的.c文件内可见，其他文件无法访问。 |
+| 生命周期(Lifetime) | 整个程序运行期间。从程序启动到程序结束，内存一直存在，
+                        不会像局部变量那样在函数返回后销毁。 |
+| 存储位置 | 静态存储区（数据段）。 |
+| 默认初始值 | 若未显式初始化，默认初始化为 0（或空指针）。 |
+
+静态存储区按变量类型分为以下三种:
+    1.已初始化的全局/静态变量 | Data 段 |   int a = 10;
+                                            static int b = 20; |
+    2.未初始化的全局/静态变量 | BSS 段 |    int c;
+                                            static int d; |
+    3.字符串常量 | 只读数据段 (rodata) |  char *s = "Hello"; （"Hello" 本身在只读区） |
+*/
+
 static int32_t s_global_static_var = 100;
 
-/** @brief 全局变量（外部可见） */
+/** @brief 全局变量（外部可见） 
+初始化好的全局变量，存放在静态存储区的data段，可以被extern引用
+*/
 int32_t g_global_var = 200;
 
 /*============================================================================*/
@@ -65,7 +83,7 @@ void demo_data_types(void)
     printf("  char:        %zu 字节, 范围: %d ~ %d\n", sizeof(char), CHAR_MIN, CHAR_MAX);
     printf("  short:       %zu 字节, 范围: %d ~ %d\n", sizeof(short), SHRT_MIN, SHRT_MAX);
     printf("  int:         %zu 字节, 范围: %d ~ %d\n", sizeof(int), INT_MIN, INT_MAX);
-    printf("  long:        %zu 字节, 范围: %ld ~ %ld\n", sizeof(long), LONG_MIN, LONG_MAX);
+    printf("  long:        %zu 字节, 范围: %ld ~ %ld\n", sizeof(long), LONG_MIN, LONG_MAX);//按操作系统分4或8
     printf("  long long:   %zu 字节, 范围: %lld ~ %lld\n", sizeof(long long), LLONG_MIN, LLONG_MAX);
 
     printf("\n[固定宽度整数类型 (嵌入式推荐)]\n");
@@ -354,14 +372,40 @@ void demo_bitwise_operators(void)
 
     printf("\n[位操作技巧]\n");
     uint8_t reg = 0x00;//->0000 0000
+
+    /* BIT_SET(reg, bit)     ((reg) |= (1U << (bit)))   将reg的第bit位置1
+    -------- 1U << bit  生成一个第bit位为1，其他位为0的掩码
+    -------- reg = reg | (1U << bit) 将reg与生成的掩码进行位或运算(同为0为0，不然为1),
+             因为掩码的第bit位为1，reg的第bit位不管是0还是1，位或运算后都为1；
+    */
     BIT_SET(reg, 3);//->00001000
     printf("  设置位3: reg = 0x%02X\n", reg);//0x08
     BIT_SET(reg, 5);//->00101000
     printf("  设置位5: reg = 0x%02X\n", reg);//0x28
+
+    /* BIT_CLEAR(reg, bit)   ((reg) &= ~(1U << (bit)))   将reg的第bit位清零
+    -------- 1U << bit  生成一个第bit位为1，其他位为0的掩码；
+    -------- ~ 将掩码取反，那么得到第bit位为0，其他位为1的新掩码；
+    -------- reg = reg & ~(1U << bit) 将reg与新掩码进行位与运算(同为1为1，不同为0),
+             因为新掩码的第bit位为0，reg的第bit位不管是0还是1，位与运算后都为0；
+    */
+
     BIT_CLEAR(reg, 3);//00100000
     printf("  清除位3: reg = 0x%02X\n", reg);//0x20
+
+    /* BIT_TOGGLE(reg, bit)  ((reg) ^= (1U << (bit)))   将reg的第bit位翻转
+    -------- 1U << bit  生成一个第bit位为1，其他位为0的掩码；
+    -------- reg = reg ^ (1U << bit) 将reg与新掩码进行异或运算(相同为0，不同为1),
+             因为掩码的第bit位为1，reg的第bit位为1时翻转为0，为0时翻转为1；
+    */
+
     BIT_TOGGLE(reg, 5);//00000000
     printf("  翻转位5: reg = 0x%02X\n", reg);//0x00
+
+    /* BIT_CHECK(reg, bit)   (((reg) >> (bit)) & 1U)   获取reg的第bit位的值
+-------- reg >> bit  将reg右移bit位，等于把目标位放到第0位；
+-------- reg & 1U  将reg与1进行位与运算(同为1为1，不同为0),这样就能知道reg的第bit位值是1还是0.
+    */
     printf("  检查位5: bit5 = %d\n", BIT_CHECK(reg, 5));//0
 }
 
@@ -598,4 +642,21 @@ void demo_operator_precedence(void)
     printf("  x = a + b = %d (算术高于赋值)\n", r5);
 
     printf("\n[建议: 使用括号明确优先级, 提高可读性]\n");
+}
+
+void basic_syntax_01()
+{
+    demo_data_types();
+    demo_variable_scope();
+    demo_storage_classes();
+    demo_constant_types();
+    demo_arithmetic_operators();
+    demo_relational_operators();
+    demo_logical_operators();
+    demo_bitwise_operators();
+    demo_assignment_operators();
+    demo_conditional_operator();
+    demo_type_conversion();
+    demo_sizeof_operator();
+    demo_operator_precedence();
 }

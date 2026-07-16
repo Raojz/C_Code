@@ -205,4 +205,15 @@ void demo_array_common_errors(void);
 }
 #endif
 
+/* @brief 数组与字符串模块实现
+* @details 演示C语言数组与字符串的使用方法。
+* 本模块涵盖以下核心知识点：
+* -一维数组：声明、初始化、访问
+* -多维数组：二维数组、三维数组
+* -数组与指针的关系
+* -字符数组与字符串
+* -字符串操作函数
+* -字符串处理技巧
+*/
+void array_string_04(void);
 #endif

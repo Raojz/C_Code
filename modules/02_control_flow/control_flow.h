@@ -140,4 +140,14 @@ void demo_state_machine(void);
 }
 #endif
 
+/* @brief 控制流模块实现
+* @details 演示C语言控制流：条件语句、循环结构等。
+* 本模块涵盖以下核心知识点：
+* -条件语句：if - else、switch - case
+* -循环结构：for、while、do - while
+* -跳转语句：break、continue、goto
+* -嵌套控制结构
+* -状态机设计模式
+*/
+void control_flow_02(void);
 #endif

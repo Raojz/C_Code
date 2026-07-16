@@ -643,3 +643,15 @@ void demo_array_common_errors(void)
     printf("  - 初始化所有数组\n");
     printf("  - 确保字符串以'\\0'结尾\n");
 }
+
+void array_string_04()
+{
+    demo_one_dimensional_array();
+    demo_multi_dimensional_array();
+    demo_character_array_string();
+    demo_string_operations();
+    demo_string_techniques();
+    demo_array_sorting();
+    demo_array_searching();
+    demo_array_common_errors();
+}

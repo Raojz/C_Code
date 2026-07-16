@@ -170,7 +170,7 @@ void demo_parameter_passing(void)
     printf("  数组元素之和: %d\n", sum);
 
     printf("\n[const参数]\n");
-    const char *str = "Hello";
+    const char *str = "Hello";//const此时修饰的是char，表示数据不能改，但指针可以重新赋值
     size_t len = get_string_length(str);
     printf("  字符串 \"%s\" 长度: %zu\n", str, len);
     printf("  const参数防止函数内部修改数据\n");
@@ -636,4 +636,15 @@ int32_t sum_integers(int32_t count, ...)
     va_end(args);
     
     return sum;
+}
+void function_scope_03()
+{
+    demo_function_basics();
+    demo_parameter_passing();
+    demo_multiple_return_values();
+    demo_scope_rules();
+    demo_storage_class();
+    demo_recursion();
+    demo_function_pointer();
+    demo_variadic_function();
 }

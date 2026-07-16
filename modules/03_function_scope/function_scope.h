@@ -317,4 +317,17 @@ static inline int32_t inline_min(int32_t a, int32_t b)
 }
 #endif
 
+/* @brief 函数与作用域模块实现
+* @details 演示C语言函数定义、声明、参数传递、作用域规则等。
+* 本模块涵盖以下核心知识点：
+* -函数声明与定义
+* -参数传递：值传递、指针传递
+* -返回值：单返回值、多返回值（指针参数）
+* -作用域：文件作用域、块作用域、函数原型作用域
+* -存储类：static函数、extern声明
+* -递归函数
+* -内联函数
+* -函数指针
+*/
+void function_scope_03(void);
 #endif

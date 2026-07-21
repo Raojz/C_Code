@@ -234,4 +234,17 @@ void process_with_callback(int32_t *arr, size_t size, ProcessCallback_t callback
 }
 #endif
 
+/* @brief 指针与内存管理模块实现
+* @details 演示C语言指针与内存管理的核心概念。
+* 本模块涵盖以下核心知识点:
+*-指针基础：声明、初始化、解引用
+* -指针运算：算术运算、关系运算
+* -指针与数组：数组名与指针的关系
+* -指针与函数：指针参数、返回指针
+* -多级指针：二级指针、指针数组
+* -动态内存：malloc、free、内存泄漏
+* -函数指针：回调函数、函数指针数组
+* -常见错误：野指针、悬空指针、内存泄漏
+*/
+void pointer_memory_05(void);
 #endif

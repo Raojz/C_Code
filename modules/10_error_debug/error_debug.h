@@ -113,5 +113,5 @@ void demo_error_handling_patterns(void);
 #ifdef __cplusplus
 }
 #endif
-
+void error_debug_10(void);
 #endif

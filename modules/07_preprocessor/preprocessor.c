@@ -402,3 +402,15 @@ void demo_code_generation(void)
     printf("  - 自动同步枚举和字符串\n");
     printf("  - 减少重复代码\n");
 }
+
+void preprocessor_07()
+{
+    demo_macro_basics();
+    demo_macro_advanced();
+    demo_conditional_compile();
+    demo_file_include();
+    demo_predefined_macros();
+    demo_pragma_directive();
+    demo_compile_time_checks();
+    demo_code_generation();
+}

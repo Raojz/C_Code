@@ -181,4 +181,6 @@ void demo_code_generation(void);
 }
 #endif
 
+void preprocessor_07(void);
+
 #endif

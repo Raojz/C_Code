@@ -72,4 +72,5 @@ void demo_config_file(void);
 }
 #endif
 
+void file_io_08(void);
 #endif

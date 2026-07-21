@@ -108,9 +108,19 @@ void demo_struct_pointer(void)
     Student_t stu = {"王五", 22, 88.0f};
     Student_t *ptr = &stu;
     
-    printf("  Student_t stu = {\"王五\", 22, 88.0};\n");
-    printf("  Student_t *ptr = &stu;\n\n");
-    
+    printf("  Student_t stu = {\"王五\", 22, 88.0};\n");//结构体变量已经分配了内存
+    printf("  Student_t *ptr = &stu;\n\n");//指针指向了已分配的内存，不用malloc
+  
+    /*
+    | 特性 | 结构体变量 | 结构体指针 |
+    |------ | ---------- - | ---------- - |
+    | 定义 | `struct Student s; ` | `struct Student * p; ` |
+    | 访问成员 | `s.age`（点运算符 `.`） | `p- > age`（箭头运算符 `- > `） |
+    | 传参效率 | 整个结构体拷贝，开销大 | 只传地址（4 / 8字节），效率高 |
+    | 修改影响 | 修改副本，不影响原值 | 直接修改原值 |
+    | 内存 | 直接分配结构体大小 | 只分配指针大小，需额外分配结构体内存 |
+    */
+
     printf("  ptr->name = \"%s\"\n", ptr->name);
     printf("  ptr->age = %d\n", ptr->age);
     printf("  ptr->score = %.1f\n", ptr->score);
@@ -202,11 +212,6 @@ void demo_struct_array(void)
     for (size_t i = 0; i < count; i++) {
         printf("  第%zu名: %s, %.1f分\n", i + 1, class[i].name, class[i].score);
     }
-
-    printf("\n[嵌入式应用]\n");
-    printf("  - 设备表: Device_t devices[MAX_DEVICES];\n");
-    printf("  - 配置表: Config_t configs[MAX_CONFIGS];\n");
-    printf("  - 传感器数据: SensorData_t sensor_data[MAX_SAMPLES];\n");
 }
 
 /*============================================================================*/
@@ -381,11 +386,6 @@ void demo_enum(void)
     printf("  STATE_ERROR = %d\n", STATE_ERROR);
     printf("  枚举本质是整数常量\n");
 
-    printf("\n[嵌入式应用]\n");
-    printf("  - 状态机状态定义\n");
-    printf("  - 错误码定义\n");
-    printf("  - 命令类型定义\n");
-    printf("  - 设备类型定义\n");
 }
 
 /*============================================================================*/
@@ -417,14 +417,14 @@ void demo_bit_field(void)
     printf("  } ConfigReg_t;\n\n");
 
     ConfigReg_t config = {0};
-    config.enable = 1;
+    config.enable = 1; 
     config.mode = 2;
     config.speed = 5;
 
     printf("[位域访问]\n");
-    printf("  enable = %u (1位)\n", config.enable);
-    printf("  mode = %u (2位, 范围0-3)\n", config.mode);
-    printf("  speed = %u (3位, 范围0-7)\n", config.speed);
+    printf("  enable = %u (1位)\n", config.enable);//位域限制一个bit位：0或1
+    printf("  mode = %u (2位, 范围0-3)\n", config.mode);//二个bit位:00 01 10 11 所以取值范围:0~3
+    printf("  speed = %u (3位, 范围0-7)\n", config.speed);//000 001 010 011 100 101 110 111 取值0~7
 
     printf("\n[位域大小]\n");
     printf("  sizeof(ConfigReg_t) = %zu 字节\n", sizeof(ConfigReg_t));
@@ -553,4 +553,18 @@ void demo_comprehensive(void)
     printf("  3. 使用联合体实现数据复用\n");
     printf("  4. 使用位域映射硬件寄存器\n");
     printf("  5. 注意内存对齐和填充\n");
+}
+
+
+void struct_union_06()
+{
+    demo_struct_basics();
+    demo_struct_pointer();
+    demo_struct_array();
+    demo_nested_struct();
+    demo_union();
+    demo_enum();
+    demo_bit_field();
+    demo_memory_alignment();
+    demo_comprehensive();
 }

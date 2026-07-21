@@ -246,9 +246,6 @@ void demo_pointer_function(void)
         printf("  最大值: %d, 地址: %p\n", *max_ptr, (void *)max_ptr);
     }
 
-    printf("\n[嵌入式应用]\n");
-    printf("  - 修改硬件寄存器: void write_reg(uint32_t *reg, uint32_t value)\n");
-    printf("  - 读取传感器数据: void read_sensor(SensorData_t *data)\n");
 }
 
 /**
@@ -375,10 +372,6 @@ void demo_multi_level_pointer(void)
     printf("  row_ptr[0][1] = %d\n", row_ptr[0][1]);
     printf("  row_ptr[1][2] = %d\n", row_ptr[1][2]);
 
-    printf("\n[嵌入式应用]\n");
-    printf("  - 命令表: const Command_t *cmd_table[]\n");
-    printf("  - 字符串数组: const char *error_msgs[]\n");
-    printf("  - 动态二维数组: int **matrix\n");
 }
 
 /*============================================================================*/
@@ -632,4 +625,15 @@ void process_with_callback(int32_t *arr, size_t size, ProcessCallback_t callback
             arr[i] = callback(arr[i]);
         }
     }
+}
+void pointer_memory_05()
+{ 
+    demo_pointer_basics();
+    demo_pointer_arithmetic();
+    demo_pointer_array();
+    demo_pointer_function();
+    demo_multi_level_pointer();
+    demo_dynamic_memory();
+    demo_pointer_errors();
+    demo_pointer_advanced();
 }

@@ -274,3 +274,11 @@ void demo_config_file(void)
     printf("  - 传感器校准参数\n");
     printf("  - 用户设置\n");
 }
+void file_io_08()
+{
+    demo_file_basics();
+    demo_file_read_write();
+    demo_file_positioning();
+    demo_file_error_handling();
+    demo_config_file();
+}

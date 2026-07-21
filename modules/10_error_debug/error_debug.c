@@ -331,3 +331,13 @@ void demo_error_handling_patterns(void)
     printf("  3. 错误处理要及时\n");
     printf("  4. 资源清理要完整\n");
 }
+
+void error_debug_10()
+{
+    demo_error_code();
+    demo_assertion();
+    demo_logging();
+    demo_defensive_programming();
+    demo_debug_techniques();
+    demo_error_handling_patterns();
+}

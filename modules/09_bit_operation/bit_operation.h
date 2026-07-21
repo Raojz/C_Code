@@ -88,4 +88,5 @@ void demo_bit_algorithms(void);
 }
 #endif
 
+void bit_operation_09(void);
 #endif

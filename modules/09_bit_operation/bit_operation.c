@@ -51,16 +51,16 @@ void demo_bit_operators(void)
     uint8_t b = 0b10110101;
 
     printf("[按位运算]\n");
-    printf("  a = 0b" BYTE_TO_BINARY_FMT " (0x%02X)\n", BYTE_TO_BINARY(a), a);
-    printf("  b = 0b" BYTE_TO_BINARY_FMT " (0x%02X)\n", BYTE_TO_BINARY(b), b);
-    printf("  a & b = 0b" BYTE_TO_BINARY_FMT " (按位与)\n", BYTE_TO_BINARY(a & b));
-    printf("  a | b = 0b" BYTE_TO_BINARY_FMT " (按位或)\n", BYTE_TO_BINARY(a | b));
-    printf("  a ^ b = 0b" BYTE_TO_BINARY_FMT " (按位异或)\n", BYTE_TO_BINARY(a ^ b));
-    printf("  ~a    = 0b" BYTE_TO_BINARY_FMT " (按位取反)\n", BYTE_TO_BINARY((uint8_t)(~a)));
+    printf("  a = 0b" BYTE_TO_BINARY_FMT " (0x%02X)\n", BYTE_TO_BINARY(a), a);//11001010
+    printf("  b = 0b" BYTE_TO_BINARY_FMT " (0x%02X)\n", BYTE_TO_BINARY(b), b);//10110101
+    printf("  a & b = 0b" BYTE_TO_BINARY_FMT " (按位与)\n", BYTE_TO_BINARY(a & b));//a & b = 10000000
+    printf("  a | b = 0b" BYTE_TO_BINARY_FMT " (按位或)\n", BYTE_TO_BINARY(a | b));//a | b = 11111111
+    printf("  a ^ b = 0b" BYTE_TO_BINARY_FMT " (按位异或)\n", BYTE_TO_BINARY(a ^ b));//a ^ b = 01111111
+    printf("  ~a    = 0b" BYTE_TO_BINARY_FMT " (按位取反)\n", BYTE_TO_BINARY((uint8_t)(~a)));//00110101
 
     printf("\n[移位运算]\n");
-    printf("  a << 2 = 0b" BYTE_TO_BINARY_FMT " (左移2位)\n", BYTE_TO_BINARY((uint8_t)(a << 2)));
-    printf("  a >> 2 = 0b" BYTE_TO_BINARY_FMT " (右移2位)\n", BYTE_TO_BINARY((uint8_t)(a >> 2)));
+    printf("  a << 2 = 0b" BYTE_TO_BINARY_FMT " (左移2位)\n", BYTE_TO_BINARY((uint8_t)(a << 2)));//00101000
+    printf("  a >> 2 = 0b" BYTE_TO_BINARY_FMT " (右移2位)\n", BYTE_TO_BINARY((uint8_t)(a >> 2)));//00110010
     printf("  左移相当于乘2, 右移相当于除2\n");
 }
 
@@ -88,17 +88,17 @@ void demo_bit_tricks(void)
 
     printf("[设置位]\n");
     printf("  reg = 0x%02X\n", reg);
-    BIT_SET(reg, 3);
+    BIT_SET(reg, 3);//0000 1000
     printf("  BIT_SET(reg, 3) -> 0x%02X\n", reg);
-    BIT_SET(reg, 5);
+    BIT_SET(reg, 5);//0010 1000
     printf("  BIT_SET(reg, 5) -> 0x%02X\n", reg);
 
     printf("\n[清除位]\n");
-    BIT_CLEAR(reg, 3);
+    BIT_CLEAR(reg, 3);//0010 0000
     printf("  BIT_CLEAR(reg, 3) -> 0x%02X\n", reg);
 
     printf("\n[翻转位]\n");
-    BIT_TOGGLE(reg, 5);
+    BIT_TOGGLE(reg, 5);//0000 0000
     printf("  BIT_TOGGLE(reg, 5) -> 0x%02X\n", reg);
 
     printf("\n[检查位]\n");
@@ -138,18 +138,18 @@ void demo_hardware_register(void)
     volatile uint32_t GPIOA_IDR = 0x00;
 
     printf("  配置GPIO模式寄存器\n");
-    GPIOA_MODER |= (0x01 << 0);  // PA0输出模式
-    GPIOA_MODER |= (0x01 << 2);  // PA1输出模式
-    printf("  GPIOA_MODER = 0x%08X\n", GPIOA_MODER);
+    GPIOA_MODER |= (0x01 << 0);  // PA0输出模式//1
+    GPIOA_MODER |= (0x01 << 2);  // PA1输出模式//0000 0001 << 2 ----0000 0100---0x01 | 0x04---0x05
+    printf("  GPIOA_MODER = 0x%08X\n", GPIOA_MODER);//5
 
     printf("\n  设置输出数据寄存器\n");
-    GPIOA_ODR |= (1 << 0);  // PA0输出高
-    GPIOA_ODR |= (1 << 1);  // PA1输出高
-    printf("  GPIOA_ODR = 0x%08X\n", GPIOA_ODR);
+    GPIOA_ODR |= (1 << 0);  // PA0输出高//1
+    GPIOA_ODR |= (1 << 1);  // PA1输出高//0000 0010--- 0000 0011
+    printf("  GPIOA_ODR = 0x%08X\n", GPIOA_ODR);//3
 
     printf("\n  清除输出\n");
-    GPIOA_ODR &= ~(1 << 0);  // PA0输出低
-    printf("  GPIOA_ODR = 0x%08X\n", GPIOA_ODR);
+    GPIOA_ODR &= ~(1 << 0);  // PA0输出低//0000 0010
+    printf("  GPIOA_ODR = 0x%08X\n", GPIOA_ODR);//2
 
     printf("\n[嵌入式应用]\n");
     printf("  - GPIO配置: 方向、上下拉、输出模式\n");
@@ -268,4 +268,13 @@ void demo_bit_algorithms(void)
     }
     printf("  原始: 0b" BYTE_TO_BINARY_FMT "\n", BYTE_TO_BINARY(byte));
     printf("  反转: 0b" BYTE_TO_BINARY_FMT "\n", BYTE_TO_BINARY(reversed));
+}
+
+void bit_operation_09()
+{
+    demo_bit_operators();
+    demo_bit_tricks();
+    demo_hardware_register();
+    demo_bitmask_application();
+    demo_bit_algorithms();
 }

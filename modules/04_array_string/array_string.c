@@ -83,8 +83,9 @@ void demo_one_dimensional_array(void)
     int32_t *ptr = arr1;
     printf("  arr1 = %p (数组首地址)\n", (void *)arr1);
     printf("  &arr1[0] = %p (首元素地址)\n", (void *)&arr1[0]);
-    printf("  ptr = arr1, ptr[2] = %d\n", ptr[2]);
-    printf("  *(arr1 + 2) = %d (指针算术)\n", *(arr1 + 2));
+    printf("  int32_t*ptr = arr1; 此时ptr = %p\n", ptr);
+    printf("  ptr+1 = %p\n", (ptr + 1));
+
 }
 
 /*============================================================================*/
@@ -112,13 +113,17 @@ void demo_multi_dimensional_array(void)
         {5, 6, 7, 8},
         {9, 10, 11, 12}
     };
-    printf("  int32_t matrix[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}}\n");
 
-    printf("\n[二维数组访问]\n");
-    printf("  matrix[1][2] = %d (第2行第3列)\n", matrix[1][2]);
+    printf("\n[二维数组访问]\n");//根据 C 语言规则：a[i] 等价于 *(a + i)
+    printf("  matrix[1][2] = %d ,地址 = %p\n", matrix[1][2], &matrix[1][2]);
+    printf("  matrix[1][2] = matrix[0][0]+6 = %d ,地址 = %p \n", matrix[0][0]+6, &matrix[0][0] + 6);//从首元素计算总偏移（行×列宽+列）
+    printf("  matrix[1][2] = *(matrix+1)[2] = *(*(matrix+1) + 2)) = %d \n", *(*(matrix + 1) + 2));
+    printf("  *(matrix + 1) = %p ,matrix[1][0] = %p\n", *(matrix + 1), &matrix[1][0]);
+    printf("  *(matrix + 1)+2 = matrix[1][2] = %p \n", *(matrix + 1)+2);
+
     printf("  行数: %zu, 列数: %zu\n", 
-           sizeof(matrix) / sizeof(matrix[0]),
-           sizeof(matrix[0]) / sizeof(matrix[0][0]));
+           sizeof(matrix) / sizeof(matrix[0]),//行数 = 数组总字节数/一维数组的字节数
+           sizeof(matrix[0]) / sizeof(matrix[0][0]));//列数 = 一维数组的字节数/首个元素的字节数
 
     printf("\n[二维数组遍历]\n");
     for (size_t i = 0; i < 3; i++) {
@@ -128,26 +133,6 @@ void demo_multi_dimensional_array(void)
         }
         printf("\n");
     }
-
-    printf("\n[内存布局]\n");
-    printf("  二维数组在内存中按行优先存储:\n");
-    printf("  地址: %p -> %p -> ... -> %p\n", 
-           (void *)&matrix[0][0], 
-           (void *)&matrix[0][1],
-           (void *)&matrix[2][3]);
-
-    printf("\n[三维数组示例]\n");
-    int32_t cube[2][2][3] = {
-        {{1, 2, 3}, {4, 5, 6}},
-        {{7, 8, 9}, {10, 11, 12}}
-    };
-    printf("  int32_t cube[2][2][3]\n");
-    printf("  cube[0][1][2] = %d\n", cube[0][1][2]);
-
-    printf("\n[嵌入式应用]\n");
-    printf("  - 图像缓冲区: uint8_t image[HEIGHT][WIDTH]\n");
-    printf("  - 矩阵运算: float matrix[N][M]\n");
-    printf("  - 查找表: const uint16_t lut[256]\n");
 }
 
 /*============================================================================*/
@@ -212,8 +197,7 @@ void demo_character_array_string(void)
  *          - strcpy/strncpy: 字符串复制
  *          - strcat/strncat: 字符串连接
  *          - strcmp/strncmp: 字符串比较
- *          - strchr/strrchr: 字符查找
- *          - strstr: 子串查找
+
  * 
  * @note 字符串操作函数需确保目标缓冲区足够大
  * @note 优先使用带n的版本（strncpy等）防止缓冲区溢出
@@ -224,16 +208,51 @@ void demo_string_operations(void)
 
     char buffer[100];
 
-    printf("[strlen - 字符串长度]\n");
+    /* strlen 的本质就是这段代码：
+    size_t strlen(const char* s) {
+        size_t len = 0;
+        while (s[len] != '\0') {   // 遇到 \0 就停
+            len++;                  // 否则继续数
+        }
+        return len;                 // 返回计数值
+    }
+    */
+    printf("[strlen - 字符串长度]\n");//不算\0
     const char *str1 = "Hello";
     printf("  strlen(\"%s\") = %zu\n", str1, strlen(str1));
 
     printf("\n[strcpy/strncpy - 字符串复制]\n");
-    strcpy(buffer, "Hello");
+    strcpy(buffer, "Hello");//全拷贝直到遇到\0才停，可能导致溢出
     printf("  strcpy: buffer = \"%s\"\n", buffer);
-    strncpy(buffer, "World", sizeof(buffer) - 1);
-    buffer[sizeof(buffer) - 1] = '\0';
+
+    /*
+    char* strncpy(char* dest, const char* src, size_t n);
+    | 参数 | 含义 |
+    |------ | ------|
+    | `dest` | 目标缓冲区（要拷贝到哪里） |
+    | `src` | 源字符串（从哪里拷贝） |
+    | `n` | 最多拷贝 n 个字符 |
+    | 返回值 | `dest` 的指针 |
+    */
+    strncpy(buffer, "World", sizeof(buffer) - 1);//n = sizeof(buffer) - 1,因为最后要补\0
+    buffer[sizeof(buffer) - 1] = '\0';//手动补\0
     printf("  strncpy: buffer = \"%s\"\n", buffer);
+
+    /*
+    int snprintf(char* str, size_t size, const char* format, ...);
+    | 参数 | 含义 |
+    |------|------|
+    | `str` | 目标缓冲区 |
+    | `size` | 缓冲区大小（最大写入字节数） |
+    | `format` | 格式字符串 |
+    | `...` | 可变参数 |
+    | 返回值 | 期望写入的总字符数（不含 `\0`），被截断时返回值 ≥ size |
+    */
+    //会自动补\0,超过会自动截断，保证最后一位是\0
+    //不会浪费空间，不会自动填充
+    //支持 %s %d %f 等所有 printf 格式
+    snprintf(buffer, sizeof(buffer),"%s","Hello World!");
+    printf("  snprintf: buffer = \"%s\"\n", buffer);
 
     printf("\n[strcat/strncat - 字符串连接]\n");
     strcpy(buffer, "Hello");
@@ -249,16 +268,7 @@ void demo_string_operations(void)
     printf("  strcmp(\"%s\", \"%s\") = %d\n", s1, s3, strcmp(s1, s3));
     printf("  strncmp(\"%s\", \"%s\", 3) = %d\n", s1, s2, strncmp(s1, s2, 3));
 
-    printf("\n[strchr/strrchr - 字符查找]\n");
-    const char *text = "Hello World";
-    char *pos = strchr(text, 'o');
-    printf("  strchr(\"%s\", 'o') = %s\n", text, pos ? pos : "NULL");
-    pos = strrchr(text, 'o');
-    printf("  strrchr(\"%s\", 'o') = %s\n", text, pos ? pos : "NULL");
 
-    printf("\n[strstr - 子串查找]\n");
-    pos = strstr(text, "World");
-    printf("  strstr(\"%s\", \"World\") = %s\n", text, pos ? pos : "NULL");
 
     printf("\n[安全建议]\n");
     printf("  - 使用strncpy替代strcpy\n");

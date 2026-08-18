@@ -51,6 +51,15 @@
     <Filter Include="源文件\modules\10_error_debug">
       <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000010}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\modules\Test1">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\Test2">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\modules\Test3">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0001-000000000013}</UniqueIdentifier>
+    </Filter>
     <Filter Include="头文件\modules\01_basic_syntax">
       <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000001}</UniqueIdentifier>
     </Filter>
@@ -80,6 +89,15 @@
     </Filter>
     <Filter Include="头文件\modules\10_error_debug">
       <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\Test1">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\Test2">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\modules\Test3">
+      <UniqueIdentifier>{A1B2C3D4-0002-0001-0002-000000000013}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +137,15 @@
     <ClCompile Include="modules\10_error_debug\error_debug.c">
       <Filter>源文件\modules\10_error_debug</Filter>
     </ClCompile>
+    <ClCompile Include="modules\Test1\test1.c">
+      <Filter>源文件\modules\Test1</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\Test2\test2.c">
+      <Filter>源文件\modules\Test2</Filter>
+    </ClCompile>
+    <ClCompile Include="modules\Test3\test3.c">
+      <Filter>源文件\modules\Test3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\common_types.h">
@@ -156,6 +183,15 @@
     </ClInclude>
     <ClInclude Include="modules\10_error_debug\error_debug.h">
       <Filter>头文件\modules\10_error_debug</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\Test1\test1.h">
+      <Filter>头文件\modules\Test1</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\Test2\test2.h">
+      <Filter>头文件\modules\Test2</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\Test3\test3.h">
+      <Filter>头文件\modules\Test3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
